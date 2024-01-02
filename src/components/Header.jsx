@@ -1,21 +1,33 @@
+import { Link } from "react-router-dom";
+
 function Header() {
   return (
-    <header className="font-bold flex items-center justify-between border-b-2 border-grey-500 p-5">
-      <div className="item-left">
-        <image
-          class="h-24 w-24"
-          src="/squid.png"
-          alt="a logo of a squid drawn in pixel art style"
-        />
-        <h1 className="text-xl md:text-2xl">snacksquid</h1>
-      </div>
-      <div className="item-right">
-        <ul className="text-l md:text-xl  flex list-none space-x-10">
-          <li>projects</li>
-          <li>contact me</li>
+    <header className="font-bold flex items-center justify-between border-b-2 border-grey-500 p-2 md:p-5">
+      <Link to="/">
+        <div className="flex item-left items-center">
+          <img
+            className="h-7 w-auto rounded-full mr-2 text-xs font-light"
+            src="squid.png"
+            alt="squid logo"
+          />
+          <h1 className="text-xl md:text-2xl">snacksquid</h1>
+        </div>
+      </Link>
+      <nav className="flex items-center item-right">
+        <ul className="text-l md:text-xl flex list-none space-x-3 md:space-x-10">
+          <li>
+            <Link to="/projects">projects</Link>
+          </li>
+          <li>
+            <a
+              href="mailto:spencer@snacksquid.com"
+              target="_blank"
+            >
+              contact me
+            </a>
+          </li>
         </ul>
-      </div>
-
+      </nav>
     </header>
   );
 }
