@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-function Header() {
+export default function Header() {
   return (
     <header className="font-bold flex items-center justify-between border-b-2 border-grey-500 p-2 md:p-5">
       <Link to="/">
@@ -10,10 +10,10 @@ function Header() {
             src="squid.png"
             alt="squid logo"
           />
-          <h1 className="text-xl md:text-2xl">snacksquid</h1>
+          <h1 className="text-xl md:text-2xl dark:text-zinc-100">snacksquid</h1>
         </div>
       </Link>
-      <nav className="flex items-center item-right">
+      <nav className="flex items-center item-right dark:text-zinc-100">
         <ul className="text-l md:text-xl flex list-none space-x-3 md:space-x-10">
           <li>
             <Link to="/projects">projects</Link>
@@ -31,5 +31,3 @@ function Header() {
     </header>
   );
 }
-
-export default Header;

@@ -3,31 +3,18 @@ import { useState } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 // import page components
-import Home from "./components/Home";
-import Projects from "./components/Projects";
-import ErrorPage from "./components/ErrorPage";
+import Home from "./components/pages/Home";
+import Projects from "./components/pages/Projects";
+import ErrorPage from "./components/pages/ErrorPage";
+import Router from "./components/Router";
 
 // css
 import "./App.css";
 
-// routes
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Home />,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: "projects",
-    element: <Projects />,
-    errorElement: <ErrorPage />,
-  },
-]);
-
 function App() {
   return (
     <>
-      <RouterProvider router={router} />
+      <Router />
     </>
   );
 }

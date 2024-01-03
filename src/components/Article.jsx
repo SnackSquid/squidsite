@@ -1,18 +1,15 @@
 import Header from "./Header";
 import Footer from "./Footer";
 
-function Projects() {
+export default function Article(props) {
   return (
     <>
       <Header />
       <div className="border-b-2 border-grey-500 border-dashed p-5">
-        <p className="mt-5">
-          This is a page of my projects. Wow, there's nothing here!
-        </p>
+        <h1 className="text-l md:text-xl font-bold">Hello world!</h1>
+        <p className="mt-5"></p>
       </div>
       <Footer />
     </>
   );
 }
-
-export default Projects;

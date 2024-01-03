@@ -1,0 +1,16 @@
+[
+  {
+    "key": "a234s",
+    "title": "FoundryVTT DockFlared",
+    "path": "dockflared",
+    "preview": "Learn how to set up FoundryVTT in a docker container using Cloudflare tunnels.",
+    "image": "/foundry_dockflared.png"
+  },
+  {
+    "key": "a334f",
+    "title": "test",
+    "path": "test",
+    "preview": "test2",
+    "image": "/foundry_dockflared.png"
+  }
+]
