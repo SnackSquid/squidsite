@@ -3,6 +3,10 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/Home";
 import Projects from "./pages/Projects";
 import ErrorPage from "./pages/ErrorPage";
+import Article from "./Article";
+import json from "./projects/projectList.json";
+
+const projects = Object.values(json);
 
 export default function Router() {
   // routes
@@ -16,7 +20,11 @@ export default function Router() {
       path: "projects",
       element: <Projects />,
       errorElement: <ErrorPage />,
-      children: [{ path: "" }],
+    },
+    {
+      path: "/projects:id",
+      element: <Projects />,
+      errorElement: <ErrorPage />,
     },
   ]);
   return <RouterProvider router={router} />;
