@@ -22,8 +22,8 @@ export default function Router() {
       errorElement: <ErrorPage />,
     },
     {
-      path: "/projects:id",
-      element: <Projects />,
+      path: "projects/:path",
+      element: <Article projects={projects} />,
       errorElement: <ErrorPage />,
     },
   ]);
