@@ -1,20 +1,22 @@
-import { Link, useLoaderData, useLocation, useParams } from "react-router-dom";
+import useParams from "next/link";
+import fs from "fs"
 
-import Markdown from "react-markdown";
-import Header from "./header";
-import Footer from "./Footer";
+import Header from '@app/ui/header';
+import Footer from '@/app/ui/footer'
 
-import json from "./projects/projectList.json";
-
-function getMDUrl(name) {
-  return new URL(`./markdown/${name}.md`, import.meta.url).href
+async function GetMarkdownFile() {
+  const params = useParams<{ route: string }>()
+  console.log(params)
+  const md = `@/app/markdown/${route}.md`
+  const mdString = fs.readFileSync(md, 'utf8')
+  return mdString
 }
 
 export default function Article(props) {
   const { path } = useParams();
 
   const project = json[path]
-  const md = getMDUrl(project.key);
+  const md = GetMarkdownFile();
 
   return (
     <>
@@ -22,7 +24,7 @@ export default function Article(props) {
       <div className="border-b-2 border-grey-500 border-dashed p-5">
         <h1 className="text-l md:text-xl font-bold mb-5 dark:text-stone-100">{project.title}</h1>
         <p className="mt-5 dark:text-stone-200">
-          <Markdown>{md}</Markdown>
+          <p>{md}</p>
         </p>
       </div>
       <Footer />

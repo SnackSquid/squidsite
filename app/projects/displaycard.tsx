@@ -5,13 +5,18 @@ interface DisplayProps {
   list: object
 }
 
-
 export default function DisplayCard(props: DisplayProps) {
   const projectList = props.list;
-  const cards = for (const prop in projectList) {
-    return (
+  const keys = Object.keys(projectList)
+  const cards = new Array()
+  for (const key in keys) {
+    const prop = projectList[key]
+    cards.push(
       <Link
-        href={prop.path}
+        href={{
+          pathname: `/projects/${prop.path}`,
+          query: { slug: '../article' }
+        }}
         key={prop.key}
       >
         <div className="block max-w-sm md:max-w-lg h-80 md:h-96 p-6 md:p-8 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark: dark:bg-zinc-800 dark:border-zinc-700 dark:hover:bg-zinc-700">
@@ -29,7 +34,7 @@ export default function DisplayCard(props: DisplayProps) {
         </div>
       </Link>
     );
-  });
+  };
 
   return <>{cards}</>;
 }

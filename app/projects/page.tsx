@@ -1,6 +1,6 @@
 import Header from "@/app/ui/header";
 import Footer from "@/app/ui/footer";
-import DisplayCard from "@/app/ui/displaycard";
+import DisplayCard from "./displaycard";
 import json from "@/app/data/projectList.json";
 
 const projects = Object.values(json);
