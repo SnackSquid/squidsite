@@ -1,21 +1,21 @@
-import * as React from 'react'
+import * as React from "react";
 import Link from "next/link";
 
 interface DisplayProps {
-  list: object
+  list: object;
 }
 
 export default function DisplayCard(props: DisplayProps) {
   const projectList = props.list;
-  const keys = Object.keys(projectList)
-  const cards = new Array()
+
+  const keys = Object.keys(projectList);
+  const cards = new Array();
   for (const key in keys) {
-    const prop = projectList[key]
+    const prop = projectList[key];
     cards.push(
       <Link
         href={{
           pathname: `/projects/${prop.path}`,
-          query: { slug: '../article' }
         }}
         key={prop.key}
       >
@@ -34,7 +34,7 @@ export default function DisplayCard(props: DisplayProps) {
         </div>
       </Link>
     );
-  };
+  }
 
   return <>{cards}</>;
 }

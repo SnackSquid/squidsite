@@ -1,5 +1,6 @@
-import React from 'react';
-import Link from 'next/link';
+import React from "react";
+import Link from "next/link";
+import Image from "next/image";
 
 export default function Header() {
   return (
@@ -8,7 +9,7 @@ export default function Header() {
         <div className="flex item-left items-center">
           <img
             className="h-7 w-auto rounded-full mr-2 text-xs font-light"
-            src="squid.png"
+            src="/squid.png"
             alt="squid logo"
           />
           <h1 className="text-xl md:text-2xl dark:text-zinc-100">snacksquid</h1>
