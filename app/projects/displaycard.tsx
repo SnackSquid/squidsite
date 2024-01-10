@@ -4,6 +4,12 @@ import Link from "next/link";
 interface DisplayProps {
   list: object;
 }
+interface Project {
+  key: string;
+  path: string;
+  image: string;
+  preview: string;
+}
 
 export default function DisplayCard(props: DisplayProps) {
   const projectList = props.list;
@@ -24,7 +30,7 @@ export default function DisplayCard(props: DisplayProps) {
             {prop.title}
           </h1>
           <img
-            className=""
+            className="h-auto w-auto"
             src={prop.image}
           />
 

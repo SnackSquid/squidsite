@@ -1,9 +1,9 @@
 import Header from "@/app/ui/header";
 import Footer from "@/app/ui/footer";
 import DisplayCard from "./displaycard";
-import json from "@/app/data/projectList.json";
+import FetchJson from "@/app/lib/fileImporters";
 
-const projects = Object.values(json);
+const projects = Object.values(FetchJson());
 
 export default function Projects() {
   return (

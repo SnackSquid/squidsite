@@ -1,16 +1,24 @@
 import Header from "@/app/ui/header";
 import Footer from "@/app/ui/footer";
+import { FetchMarkDown } from "@/app/lib/fileImporters";
+import FetchJson from "@/app/lib/fileImporters";
+
+const json = FetchJson();
 
 export default function Page(params: Object) {
-  //const project = json[path];
-  //const md = GetMarkdownFile();
+  const key = params.params.articles;
+  const articleInfo = json[key];
+
+  FetchMarkDown(articleInfo.path);
 
   return (
     <>
       <Header />
       <div className="border-b-2 border-grey-500 border-dashed p-5">
-        <h1 className="text-l md:text-xl font-bold mb-5 dark:text-stone-100"></h1>
-        <p className="mt-5 dark:text-stone-200">{params.articles}</p>
+        <h1 className="text-l md:text-xl font-bold mb-5 dark:text-stone-100">
+          {articleInfo.title}
+        </h1>
+        <p className="mt-5 dark:text-stone-200">{key}</p>
       </div>
       <Footer />
     </>
