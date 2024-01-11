@@ -5,12 +5,12 @@ import FetchJson from "@/app/lib/fileImporters";
 
 const json = FetchJson();
 
-export default function Page(params: Object) {
+export default async function Page(params: Object) {
   const key = params.params.articles;
   const articleInfo = json[key];
-
-  FetchMarkDown(articleInfo.path);
-
+  console.log(articleInfo.path);
+  const markDown = await FetchMarkDown(articleInfo.path);
+  console.log(markDown);
   return (
     <>
       <Header />
@@ -18,7 +18,7 @@ export default function Page(params: Object) {
         <h1 className="text-l md:text-xl font-bold mb-5 dark:text-stone-100">
           {articleInfo.title}
         </h1>
-        <p className="mt-5 dark:text-stone-200">{key}</p>
+        <article className="mt-5 dark:text-stone-200">{markDown}</article>
       </div>
       <Footer />
     </>
