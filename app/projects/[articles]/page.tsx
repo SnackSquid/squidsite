@@ -1,6 +1,6 @@
 import Header from "@/app/ui/header";
 import Footer from "@/app/ui/footer";
-import { FetchMarkDown } from "@/app/lib/fileImporters";
+import { FetchMarkDown, GetMarkDownFile } from "@/app/lib/fileImporters";
 import FetchJson from "@/app/lib/fileImporters";
 
 const json = FetchJson();
@@ -8,9 +8,9 @@ const json = FetchJson();
 export default async function Page(params: Object) {
   const key = params.params.articles;
   const articleInfo = json[key];
-  console.log(articleInfo.path);
-  const markDown = await FetchMarkDown(articleInfo.path);
-  console.log(markDown);
+  const mdString = await GetMarkDownFile(articleInfo.path);
+  const markDown = await FetchMarkDown(mdString);
+  
   return (
     <>
       <Header />
@@ -18,13 +18,18 @@ export default async function Page(params: Object) {
         <h1 className="text-l md:text-xl font-bold mb-5 dark:text-stone-100">
           {articleInfo.title}
         </h1>
-        <article className="mt-5 dark:text-stone-200">{markDown}</article>
+        <article className="mt-5 dark:text-stone-200"
+        dangerouslySetInnerHTML={{__html: markDown}}></article>
       </div>
       <Footer />
     </>
   );
 }
 
+
+function GetMarkdownFile() {
+  throw new Error("Function not implemented.");
+}
 /*
 async function GetMarkdownFile() {
   const params = useParams<{ route: string }>();

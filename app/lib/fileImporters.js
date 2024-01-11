@@ -10,15 +10,14 @@ export default function FetchJson() {
   return json;
 }
 
-export async function FetchMarkDown(filename) {
-  const files = fs.readdirSync(markdownDir)
-  files.map(async (file) => {
-    if (file.replace(/\.md$/, "") == filename) {
-      const filePath = path.join(markdownDir, file);
-      const rawMD = fs.readFileSync(filePath, "utf-8");
-      const content = await remark().use(html).process(rawMD)
-      console.log(content.value)
-      return content.value.toString();
-    }
-  })
+export async function GetMarkDownFile(filename) {
+  const filePath = path.join(markdownDir, `${filename}.md`);
+  const rawMD = fs.readFileSync(filePath, "utf-8");
+  return rawMD;
+}
+
+export async function FetchMarkDown(rawMD) {
+  const convertedMD = await remark().use(html).process(rawMD)
+  return convertedMD.value.toString();
+
 }
