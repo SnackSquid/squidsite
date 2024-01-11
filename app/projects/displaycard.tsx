@@ -1,23 +1,23 @@
 import * as React from "react";
 import Link from "next/link";
 
-interface DisplayProps {
-  list: object;
-}
-interface Project {
-  key: string;
-  path: string;
-  image: string;
-  preview: string;
-}
+type DisplayProps = {
+  [key: string]: any;
+};
+type Project = {
+  [key: string]: ProjectInfo;
+};
+type ProjectInfo = {
+  [key: string]: string;
+};
 
 export default function DisplayCard(props: DisplayProps) {
-  const projectList = props.list;
+  const projectList: Project = props.list;
 
   const keys = Object.keys(projectList);
   const cards = new Array();
   for (const key in keys) {
-    const prop = projectList[key];
+    const prop: ProjectInfo = projectList[key];
     cards.push(
       <Link
         href={{

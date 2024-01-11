@@ -1,11 +1,10 @@
 import Header from "@/app/ui/header";
 import Footer from "@/app/ui/footer";
 import DisplayCard from "./displaycard";
-import FetchJson from "@/app/lib/fileImporters";
+import SquidAPI from "@/app/lib/api";
 
-const projects = Object.values(FetchJson());
-
-export default function Projects() {
+export default async function Projects() {
+  const projects = await SquidAPI.GetProjectList();
   return (
     <>
       <Header />

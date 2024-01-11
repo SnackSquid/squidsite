@@ -1,16 +1,19 @@
 import Header from "@/app/ui/header";
 import Footer from "@/app/ui/footer";
-import { FetchMarkDown, GetMarkDownFile } from "@/app/lib/fileImporters";
-import FetchJson from "@/app/lib/fileImporters";
+import SquidAPI from "@/app/lib/api";
 
-const json = FetchJson();
+type Params = {
+  params: {
+    articles: string;
+  };
+};
 
-export default async function Page(params: Object) {
+export default async function Page(params: Params) {
   const key = params.params.articles;
-  const articleInfo = json[key];
-  const mdString = await GetMarkDownFile(articleInfo.path);
-  const markDown = await FetchMarkDown(mdString);
-  
+  const mdFile = await SquidAPI.GetMarkDownFile(key);
+  const articleInfo = mdFile.data;
+  const markDown = await SquidAPI.ConvertMarkDown(mdFile.content);
+
   return (
     <>
       <Header />
@@ -18,14 +21,15 @@ export default async function Page(params: Object) {
         <h1 className="text-l md:text-xl font-bold mb-5 dark:text-stone-100">
           {articleInfo.title}
         </h1>
-        <article className="mt-5 dark:text-stone-200"
-        dangerouslySetInnerHTML={{__html: markDown}}></article>
+        <article
+          className="mt-5 dark:text-stone-200"
+          dangerouslySetInnerHTML={{ __html: markDown }}
+        ></article>
       </div>
       <Footer />
     </>
   );
 }
-
 
 function GetMarkdownFile() {
   throw new Error("Function not implemented.");
