@@ -17,15 +17,15 @@ export default async function Page(params: Params) {
   return (
     <>
       <Header />
-      <div className="border-b-2 border-grey-500 border-dashed p-5">
-        <h1 className="text-l md:text-xl font-bold mb-5 dark:text-stone-100">
+      <div className="flex items-center border-b-2 border-grey-500 border-dashed p-5">
+        <h1 className="text-l md:text-xl font-bold dark:text-stone-100">
           {articleInfo.title}
         </h1>
-        <article
-          className="mt-5 dark:text-stone-200"
-          dangerouslySetInnerHTML={{ __html: markDown }}
-        ></article>
       </div>
+      <article
+        className="m-5 dark:text-stone-200 p-5"
+        dangerouslySetInnerHTML={{ __html: markDown }}
+      ></article>
       <Footer />
     </>
   );

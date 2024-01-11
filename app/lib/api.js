@@ -1,9 +1,15 @@
-import json from "@/app/data/projectList.json";
 import fs from "fs"
 import path from "path"
-import { remark } from "remark";
 import html from "remark-html"
 import matter from "gray-matter";
+
+import remarkParse from 'remark-parse'
+import remarkRehype from 'remark-rehype'
+import { unified } from 'unified'
+import remarkGfm from "remark-gfm";
+import rehypeStringify from "rehype-stringify";
+import rehypeFormat from "rehype-format";
+
 
 const markdownDir = path.join(process.cwd(), "app/projects/markdown")
 const SquidAPI = (() => {
@@ -27,8 +33,14 @@ const SquidAPI = (() => {
   }
 
   const ConvertMarkDown = async (rawMD) => {
-    const convertedMD = await remark().use(html).process(rawMD)
-    return convertedMD.value.toString();
+    const convertedMD = await unified()
+      .use(remarkParse)
+      .use(remarkGfm)
+      .use(remarkRehype)
+      .use(rehypeStringify)
+      .process(await rawMD);
+
+    return convertedMD.value;
   }
 
   return {
