@@ -1,15 +1,6 @@
 import fs from "fs"
 import path from "path"
-import html from "remark-html"
 import matter from "gray-matter";
-
-import remarkParse from 'remark-parse'
-import remarkRehype from 'remark-rehype'
-import { unified } from 'unified'
-import remarkGfm from "remark-gfm";
-import rehypeStringify from "rehype-stringify";
-import rehypeFormat from "rehype-format";
-
 
 const markdownDir = path.join(process.cwd(), "app/projects/markdown")
 const SquidAPI = (() => {
@@ -25,28 +16,16 @@ const SquidAPI = (() => {
     return projects;
   };
 
-  const GetMarkDownFile = async (filename) => {
-    const filePath = path.join(markdownDir, `${filename}.md`);
+  const GetMDX = async (filename) => {
+    const filePath = path.join(markdownDir, `${filename}.mdx`);
     const rawMD = fs.readFileSync(filePath, "utf-8");
-    const data = matter(rawMD);
-    return data;
-  }
-
-  const ConvertMarkDown = async (rawMD) => {
-    const convertedMD = await unified()
-      .use(remarkParse)
-      .use(remarkGfm)
-      .use(remarkRehype)
-      .use(rehypeStringify)
-      .process(await rawMD);
-
-    return convertedMD.value;
+    const markdown = matter(rawMD);
+    return markdown;
   }
 
   return {
     GetProjectList,
-    GetMarkDownFile,
-    ConvertMarkDown
+    GetMDX
   };
 })();
 

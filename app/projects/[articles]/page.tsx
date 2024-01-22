@@ -1,6 +1,7 @@
 import Header from "@/app/ui/header";
 import Footer from "@/app/ui/footer";
 import SquidAPI from "@/app/lib/api";
+import { MDXRemote } from "next-mdx-remote/rsc";
 
 type Params = {
   params: {
@@ -10,9 +11,10 @@ type Params = {
 
 export default async function Page(params: Params) {
   const key = params.params.articles;
-  const mdFile = await SquidAPI.GetMarkDownFile(key);
-  const articleInfo = mdFile.data;
-  const markDown = await SquidAPI.ConvertMarkDown(mdFile.content);
+
+  const MDX = await SquidAPI.GetMDX(key);
+  const content = MDX.content;
+  const articleInfo = MDX.data;
 
   return (
     <>
@@ -24,8 +26,7 @@ export default async function Page(params: Params) {
       </div>
       <article
         className="m-5 dark:text-stone-200 p-5"
-        dangerouslySetInnerHTML={{ __html: markDown }}
-      ></article>
+      > <MDXRemote source={content} /> </article>
       <Footer />
     </>
   );
