@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
-import { Fira_Code } from 'next/font/google'
+import { Vollkorn, Fira_Mono } from 'next/font/google'
 import './globals.css'
 
-const inter = Fira_Code({ subsets: ['latin'] })
+const inter = Vollkorn({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'snacksquid',

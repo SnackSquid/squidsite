@@ -25,7 +25,7 @@ export default function DisplayCard(props: DisplayProps) {
         }}
         key={prop.key}
       >
-        <div className="block max-w-sm md:max-w-lg h-80 md:h-96 p-6 md:p-8 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark: dark:bg-zinc-800 dark:border-zinc-700 dark:hover:bg-zinc-700">
+        <div className="block max-w-sm md:max-w-lg h-80 md:h-96 p-6 md:p-8 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-zinc-800 dark:border-zinc-700 dark:hover:bg-zinc-700">
           <h1 className="text-l md:text-xl font-bold mb-5 dark:text-stone-100">
             {prop.title}
           </h1>

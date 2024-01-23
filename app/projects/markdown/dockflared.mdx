@@ -9,7 +9,7 @@
 
 ## Running Foundry VTT on Docker with Cloudflare Tunnels
 
-<h3 style={{color: "#5c788f"}}> unexpose your foundry install </h3>
+<h3 style={{color: "#c084fc"}}> unexpose your foundry install </h3>
 
 Now before you start mashing **SKIP TO RECIPE** I hope you won't begrudge my small preamble to the setup, which is fairly simple depending on your computing situation.
 
@@ -25,7 +25,7 @@ This amount of setup and security is probably overkill for the vast majority of 
 - Some time to mess around with configs, get it working, and then break it again
 
 ### The Recipe
-This setup uses the great felddy/foundryvtt docker image. You can use whatever flavor of container you like, this is just the one I use. My compose file below relies on an .env file that you'll need to create. It should look something like this:
+This setup uses the great [felddy/foundryvtt](https://github.com/felddy/foundryvtt-docker) docker image. You can use whatever flavor of container you like, this is just the one I use. My compose file below relies on an .env file that you'll need to create. It should look something like this:
 
 ```env
 CONTAINER_PRESERVE_CONFIG=true
@@ -41,7 +41,9 @@ HOSTNAME=path.example.com
 FOUNDRY_IP_DISCOVERY=false
 USERNAME="your_username"
 ```
-You'll need to plug in your own values for the variables. This guide sets up HTTPS traffic through the Cloudflare tunnel. Now, the tunnel itself is encrypted so it's not necessarily a requirement to have HTTPS, but it's a good idea to have it.
+You'll need to plug in your own values for the variables. Take a look at the felddy/foundryvtt documentation if you want to modify this config. Some of these are required and some are just my own personal preference and helper variables for organzing the compose file below. 
+
+This guide sets up HTTPS traffic through the Cloudflare tunnel. Now, the tunnel itself is encrypted so it's not necessarily a requirement to have HTTPS, but it's a good idea to have it. I'll go through how to add the pem files later on. Just know that you'll need to rename them.
 
 
 ### The Compose File
