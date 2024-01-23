@@ -9,10 +9,78 @@
 
 ## Running Foundry VTT on Docker with Cloudflare Tunnels
 
-### unexpose your foundry install
+<h3 style={{color: "#5c788f"}}> unexpose your foundry install </h3>
 
 Now before you start mashing **SKIP TO RECIPE** I hope you won't begrudge my small preamble to the setup, which is fairly simple depending on your computing situation.
 
-Being a tremendous nerd I am, I love Dungeons and Dragons (_and other assorted TTRPGs_). When my group went totally remote, I searched long and hard for a good virtual table top. I naturally went with Foundry for the amount of customization and the self hosting option. I'm the kind of person who will let a subscription go for months after not needing it, and I just couldn't stomach another monthly fee.
+Being a tremendous nerd I am, I love Dungeons and Dragons (_and other assorted TTRPGs_). When my group went totally remote, I searched long and hard for a good virtual table top. I naturally went with Foundry for the amount of customization and the self hosting option. I'm the kind of person who will let a subscription go for months after not needing it, and I just couldn't justify another monthly fee.
 
 I also wanted to do this as cheap as possible because my friends (_and I_) are flakey. The ability to spin up/shut down the service at will is great.
+
+This amount of setup and security is probably overkill for the vast majority of folks, but that doesn't mean it's not fun to do. I'm going to show you how to set up Foundry VTT in a docker container and expose it to the internet using Cloudflare Tunnels.
+
+### What you'll need
+- A computer with a Linux distro installed (can be wsl2)
+- A domain name registered with Cloudflare
+- Some time to mess around with configs, get it working, and then break it again
+
+### The Recipe
+This setup uses the great felddy/foundryvtt docker image. You can use whatever flavor of container you like, this is just the one I use. My compose file below relies on an .env file that you'll need to create. It should look something like this:
+
+```env
+CONTAINER_PRESERVE_CONFIG=true
+FOUNDRY_ADMIN_KEY=""
+FOUNDRY_USERNAME=""
+FOUNDRY_PASSWORD=""
+TUNNEL_TOKEN=""
+FOUNDRY_TELEMETRY=false
+FOUNDRY_MINIFY_STATIC_FILES=true
+FOUNDRY_SSL_CERT=/etc/ssl/certs/example_cert.pem
+FOUNDRY_SSL_KEY=/etc/ssl/certs/example_key.pem
+HOSTNAME=path.example.com
+FOUNDRY_IP_DISCOVERY=false
+USERNAME="your_username"
+```
+You'll need to plug in your own values for the variables. This guide sets up HTTPS traffic through the Cloudflare tunnel. Now, the tunnel itself is encrypted so it's not necessarily a requirement to have HTTPS, but it's a good idea to have it.
+
+
+### The Compose File
+
+```yaml
+---
+version: "3.8"
+
+services:
+  foundry:
+    container_name: ${HOSTNAME}
+    hostname: ${HOSTNAME}
+    image: felddy/foundryvtt:release
+    volumes:
+      - type: bind
+        source: /home/${USERNAME}/.config/FoundryVTT
+        target: /data
+    environment:
+      - FOUNDRY_PASSWORD
+      - FOUNDRY_USERNAME
+      - FOUNDRY_ADMIN_KEY
+      - CONTAINER_PRESERVE_CONFIG
+    expose:
+      - "30000/tcp"
+    networks:
+      - foundry
+        
+  tunnel:
+    container_name: cloudflared
+    image: cloudflare/cloudflared
+    restart: unless-stopped
+    command: tunnel run
+    environment:
+      - TUNNEL_TOKEN
+    networks:
+      - foundry
+
+networks:
+    foundry:
+
+```
+

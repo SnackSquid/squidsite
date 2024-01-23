@@ -6,7 +6,7 @@ export default function Home() {
     <>
       <Header />
       <div className="border-b-2 border-grey-500 border-dashed p-5">
-        <h1 className="text-l md:text-xl font-bold dark:text-zinc-100">
+        <h1>
           Hello world!
         </h1>
         <p className="mt-5 dark:text-stone-200">

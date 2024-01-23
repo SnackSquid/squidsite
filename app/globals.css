@@ -2,39 +2,33 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  height: 100vh;
+@layer base {
+  html {
+  @apply h-screen dark:bg-neutral-900
+    }
+  h1 {
+    @apply text-xl md:text-2xl font-bold dark:text-zinc-100
+  }
+  h2 {
+    @apply text-lg md:text-xl font-bold dark:text-zinc-100
+  }
+  h3 {
+    @apply text-base md:text-lg font-bold dark:text-zinc-100
+  } 
+  h4 {
+    @apply text-sm md:text-base font-bold dark:text-zinc-100
+  } 
+  p {
+
+  }
 }
+
+
 
 body {
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  font-family: Hack, monospace;
   height: 100vh;
   max-width: 1024px;
-}
-
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
 }
