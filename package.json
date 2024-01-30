@@ -1,11 +1,12 @@
 {
   "name": "nextsquid",
   "homepage": "https://www.snacksquid.com",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "predeploy": "npm run build",
     "start": "next start",
     "lint": "next lint",
     "deploy": "gh-pages -d app"
