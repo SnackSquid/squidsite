@@ -1,6 +1,5 @@
 {
   "name": "nextsquid",
-  "homepage": "https://www.snacksquid.com",
   "version": "0.2.0",
   "private": true,
   "scripts": {
