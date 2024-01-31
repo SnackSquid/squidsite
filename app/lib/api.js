@@ -2,7 +2,7 @@ import fs from "fs"
 import path from "path"
 import matter from "gray-matter";
 
-const markdownDir = path.join(process.cwd(), "app/projects/[articles]/markdown")
+const markdownDir = path.join(process.cwd(), "public/markdown/")
 const imgDir = path.join(process.cwd(), "public/")
 const SquidAPI = (() => {
 
