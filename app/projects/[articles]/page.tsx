@@ -12,7 +12,7 @@ type Params = {
 
 export default async function Page(params: Params) {
   const key = params.params.articles;
-
+  console.log(key);
   const MDX = await SquidAPI.GetMDX(key);
   const content = MDX.content;
   const articleInfo = MDX.data;
