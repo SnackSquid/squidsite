@@ -24,7 +24,7 @@ export default async function Page(params: Params) {
             height={400}
             width={400}
             src={articleInfo.hero}
-            alt={articleInfo.title}
+            alt={articleInfo.alt}
             className="object-cover dark:text-stone-100"
           />
         </div>
