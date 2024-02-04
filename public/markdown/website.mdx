@@ -4,6 +4,26 @@
   path: "website"
   date: "2024-02-01"
   preview: "How I made this website."
-  image: "website/preview.png"
-  hero: "website/hero.svg"
+  image: "/website/preview.png"
+  hero: "/website/hero.jpg"
 ---
+
+## The Making of snacksquid.com!
+
+<h3 style={{color: "#059669"}}> wow a website </h3>
+
+All of my web development experience comes from The (totally great) [Odin Project](https://www.theodinproject.com/). Specifically, the Javascript path. I worked extremely hard on it for awhile and then got discouraged and bummed out since I had the wrong mindset. I put too much pressure on myself to become a _CODER_ and make a living off of it.
+
+Now, I like to do things for fun. I find that even though I don't make websites for a living learning JS and to create things with code is ocassionally super helpful in my day to day job. Not that I've had to make a website or anything but the experience thinking in code and problem solving is great.
+
+So I decided to take a crack at making a vanity website since I already had the domain for a few practical projects. I first started using Vite, since I was already familiar with React and had built a few small projects with it. I really like how modular React is and how easy it is to make reusable components. 
+
+It went quick and great until I ran into trouble dynamically loading Markdown. I don't remember what my problem was but I know it was enough for me to stop my progress and go with plain HTML and CSS.
+
+I figured I'd go old-school for a nice static site. Again, I ran into trouble using Tailwind CSS. I could load it from Tailwind's CDN but they recommend not doing that. I was letting perfect be the enemy of good.
+
+My final go was using Next.js. It was kind of a Goldilocks and the Three Bears situation since it let me stay with React which I like a lot better than plain HTML and CSS. Next is super cool with a lot of great features like split server and client code, static site generation, and server side rendering.
+
+After beating my head against the wall with the new routing system, I finally got it to work. The site dynamically generates a new post for each Markdown file in the `markdown` directory. I'm using `gray-matter` to embed the metadata into the post so I can pull the title, date, and preview for the homepage. It was what I imediately wanted to do with React/Vite but couldn't quite figure it out.
+
+So that's the story. Feel free to take a look at the source code on [GitHub](https://github.com/SnackSquid/squidsite)

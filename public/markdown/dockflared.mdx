@@ -4,8 +4,8 @@
   path: "dockflared"
   date: "2024-01-11"
   preview: "Learn how to set up FoundryVTT in a docker container using Cloudflare tunnels."
-  image: "dockflared/preview.png"
-  hero: "dockflared/hero.svg"
+  image: "/dockflared/preview.png"
+  hero: "/dockflared/hero.svg"
 ---
 
 ## Running Foundry VTT on Docker with Cloudflare Tunnels
@@ -53,6 +53,8 @@ Now we'll need to generate the .pem files for HTTPS. Go to the Cloudflare dashbo
 Click **Create Certificate**. Remove the hostnames under the **Hostnames** section and add only your Foundry subdomain. Again, it should only have your website name, so something like **foundry.example.com**. Once you've done that, click create. You'll see two sections, the **Origin Certificate** and **Private Key**. Keep the page open or keep the values handy, you'll use them in a second.
 
 Now go back to your terminal and run the following commands to create our .pem files.
+
+!! Make sure you put your own values from the pen files into the quotation marks after the echo commands !!
 
 ```bash
 touch /etc/ssl/certs/example_cert.pem
@@ -129,4 +131,4 @@ Modify the compose and .env files to your liking using your favorite text editor
 sudo docker compose up -d
 ```
 
-T
+BOOM you're done. You should be able to access your Foundry install at your subdomain. If you're having trouble, check the logs of the containers to see what's going on. If you're having difficulties with the tunnel you can always disable HTTPS to get an idea of what's going on, or you can just use HTTP if you like to live on the wild side.

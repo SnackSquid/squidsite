@@ -20,7 +20,7 @@
     @apply text-sm md:text-base font-bold dark:text-zinc-100 font-sans;
   }
   code {
-    @apply dark:text-yellow-400 font-mono p-10 flex md:w-1/2  bg-white overflow-hidden text-ellipsis text-xs md:text-sm border-gray-200 rounded-lg shadow dark:bg-zinc-800 dark:border-zinc-700;
+    @apply dark:text-yellow-400 font-mono;
   }
 }
 

@@ -13,6 +13,7 @@ export default function Home() {
           of them!!
         </p>
       </div>
+
       <Footer />
     </>
   );
